@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Criar novo Premio</h1>
+  <a href="#" routerLink="/" class="btn btn-primary">Voltar</a>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <input formControlName="descricao" id="descricao" type="text" class="form-control">
+      <div *ngIf="f['descricao'].touched && f['descricao'].invalid" class="alert alert-danger">
+        <div *ngIf="f['descricao'].errors && f['descricao'].errors['required']">A Descrição é obrigatória</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ordemPremiacao">Ordem Premiação</label>
+      <input formControlName="ordemPremiacao" id="ordemPremiacao" type="number" class="form-control">
+      <div *ngIf="f['ordemPremiacao'].touched && f['ordemPremiacao'].invalid" class="alert alert-danger">
+        <div *ngIf="f['ordemPremiacao'].errors && f['ordemPremiacao'].errors['required']">A Descrição é obrigatória</div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input formControlName="categoria" id="categoria" type="number" class="form-control">
+      <div *ngIf="f['categoria'].touched && f['categoria'].invalid" class="alert alert-danger">
+        <div *ngIf="f['categoria'].errors && f['categoria'].errors['required']">A Categoria é obrigatória</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select formControlName="status" id="status" class="form-control">
+        <option value="">Selecione</option>
+        @for(status of statusOption; track status){
+          <option [value]="status.id">{{ status.descricao}}</option>
+        }
+      </select>
+      <div *ngIf="f['status'].touched && f['status'].invalid" class="alert alert-danger">
+        <div *ngIf="f['status'].errors && f['status'].errors['required']">A definição de status é necessária</div>
+      </div>
+    </div>
+
+    <br/>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Salvar</button>
+
+  </form>
+
+</div>
